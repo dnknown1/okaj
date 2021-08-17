@@ -53,6 +53,9 @@ const l = [1,2,3].reduce(
   node()
 );
 console.log(pop(l),pop(node()));
+console.log(append(l, 6));
+
+
 const contains= (
   h,k,f=(e,r)=>e===r)=> (
     !f(h.key,k)?
