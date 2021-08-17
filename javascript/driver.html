@@ -1,0 +1,72 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="uttf-8">
+<!--BootStrap-->
+<link rel="stylesheet" href="./__Assets/bootstrap.min.css"/>
+<script src="./__Assets/bootstrap.bundle.min.js"></script>
+<!--Babel-->
+<!--react -->
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<style type="text/css" media="all">
+table, td, th {
+    border: 1px solid black;
+}
+table {
+border-collapse: collapse;
+}
+td, th {
+padding: 10px;
+}
+    
+</style>
+<title>React!</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const Tag = React.createElement
+class TodoApp extends React.Component{
+    constructor(props) {
+    super(props)
+    this.state = { items: [], text: '' }
+    }
+    
+    render(){return(
+        Tag("div",null,
+            Tag("h3",null,"TODO"),
+            Tag(TodoList,{items: this.state.items}),
+            Tag("form",{onSubmit: this.handleSubmit},
+                Tag("label",{htmlFor: "new-todo" },"What needs to be done?"),
+                Tag("input",{id: "new-todo",onChange: this.handleChange,value: this.state.text}),
+                Tag("button",null,"Add #", this.state.items.length + 1)
+            )
+        )
+    )}
+    handleChange = (e) => this.setState({text: e.target.value})
+/*
+    */
+
+    handleSubmit = (e)=> (
+        if (this.state.text.length === 0) return false
+        const newItem = {id: Date.now(), text: this.state.text}
+        this.setState(state =>({
+            items: state.items.concat(newItem),
+            text: ''}
+        ))
+    )
+}
+
+class TodoList extends React.Component{
+    render(){return(
+        Tag("ul",null,
+        this.props.items.map(item => Tag("li",{key: item.id},item.text))
+        )
+    )}
+}
+
+ReactDOM.render(Tag(TodoApp, null), document.getElementById('app'))
+</script>
+</body>
+</html>

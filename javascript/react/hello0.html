@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      class HelloMessage extends React.Component {
+  render() {
+    return React.createElement(
+      "div",
+      null,
+      "Hello ",
+      this.props.name
+    );
+  }
+}
+ReactDOM.render(React.createElement(HelloMessage, { name: "Taylor" }), document.getElementById('hello-example'));
+    </script>
+  </body>
+</html>
